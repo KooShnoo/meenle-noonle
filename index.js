@@ -21,13 +21,13 @@ let render = (async () => {
 
     if (WebAssembly.instantiateStreaming) {
         var { instance: instance, module: mod } = await WebAssembly.instantiateStreaming(
-            fetch("/meenle_noonle.wasm"),
+            fetch("https://kooshnoo.github.io/meenle-noonle/meenle_noonle.wasm"),
             importObject
         );
     } else if (WebAssembly.instantiate){
         console.log("Your browser is old. Proceeding with WebAssembly.instantiate which waits for \
         the entire wasm binary to be downloaded before preparing.")
-        let wasm = await fetch("/meenle_noonle.wasm");
+        let wasm = await fetch("https://kooshnoo.github.io/meenle-noonle/meenle_noonle.wasm");
         let arrBuff = await wasm.arrayBuffer()
         var { instance: instance, module: mod } = await WebAssembly.instantiate(arrBuff, importObject);
     } else {
